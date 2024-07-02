@@ -16,4 +16,14 @@ var osmTile = new ol.layer.Tile ({
 
 map.addLayer(osmTile);
 
+var WorldTiles = new ol.layer.Tile({
+    title: "World Nations",
+    source: new ol.source.TileWMS({
+        url: "http://localhost:8081/geoserver/ne/wms",
+        params: {'LAYERS': 'ne:world', 'TILED': true},
+        serverType: 'geoserver',
+        visible: true
+    })
+})
 
+map.addLayer(WorldTiles)
