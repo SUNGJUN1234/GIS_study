@@ -27,3 +27,11 @@ var WorldTiles = new ol.layer.Tile({
 })
 
 map.addLayer(WorldTiles)
+
+var layerSwitcher = new ol.control.LayerSwitcher({
+    activationMode: 'click',
+    startActive: false,
+    groupSelectStyle: 'children',
+});
+
+map.addControl(layerSwitcher);
