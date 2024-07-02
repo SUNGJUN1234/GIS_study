@@ -1,7 +1,45 @@
-#map {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
+
+#map {
+    width: 100vw;
+    height: 100vh;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas: 
+    'header header'
+    'left right'
+    'footer footer';
+}
+
+.header {
+    grid-area: header;
+    font-size: 25px;
+    height: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.left {
+    grid-area: left;
+    width: 20vw;
+    height: 100vh;
+    border: 5px solid grey;
+}
+
+.toc {
+    margin-left: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.right {
+    grid-area: right;
+    width: 80vw;
+    height: 100vh;
+    border: 5px solid grey;
+}
+

@@ -17,7 +17,7 @@ var osmTile = new ol.layer.Tile ({
 map.addLayer(osmTile);
 
 var WorldTiles = new ol.layer.Tile({
-    title: "World Nations",
+    title: "Open World Map",
     source: new ol.source.TileWMS({
         url: "http://localhost:8081/geoserver/ne/wms",
         params: {'LAYERS': 'ne:world', 'TILED': true},
@@ -28,10 +28,23 @@ var WorldTiles = new ol.layer.Tile({
 
 map.addLayer(WorldTiles)
 
-var layerSwitcher = new ol.control.LayerSwitcher({
-    activationMode: 'click',
-    startActive: false,
-    groupSelectStyle: 'children',
-});
+// var layerSwitcher = new ol.control.LayerSwitcher({
+//     activationMode: 'click',
+//     startActive: false,
+//     groupSelectStyle: 'children',
+// });
 
-map.addControl(layerSwitcher);
+// map.addControl(layerSwitcher);
+
+function toggleLayer(event) {
+    var lyrname = event.target.value;
+    var checkedStatus = event.target.checked;
+    var lyrList = map.getLayers();
+
+    lyrList.forEach(function (element) {
+        if (lyrname == element.get('title')) {
+            element.setVisible(checkedStatus);
+        }
+        
+    });
+}
