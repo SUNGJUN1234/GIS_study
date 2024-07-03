@@ -13,7 +13,6 @@ var osmTile = new ol.layer.Tile ({
     visible: true,
     source: new ol.source.OSM()
 })
-
 map.addLayer(osmTile);
 
 var WorldTiles = new ol.layer.Tile({
@@ -28,23 +27,48 @@ var WorldTiles = new ol.layer.Tile({
 
 map.addLayer(WorldTiles)
 
-// var layerSwitcher = new ol.control.LayerSwitcher({
-//     activationMode: 'click',
-//     startActive: false,
-//     groupSelectStyle: 'children',
-// });
+var BlueSeoul = new ol.layer.Tile({
+    title: "blue-seoul",
+    source: new ol.source.TileWMS({
+        url: "http://localhost:8081/geoserver/seoul/wms",
+        params: {'LAYERS': 'seoul:tl_sprd_intrvl', 'TILED': true},
+        serverType: 'geoserver',
+        visible: true
+    })
+})
 
-// map.addControl(layerSwitcher);
+map.addLayer(BlueSeoul)
 
-function toggleLayer(event) {
-    var lyrname = event.target.value;
-    var checkedStatus = event.target.checked;
-    var lyrList = map.getLayers();
 
-    lyrList.forEach(function (element) {
-        if (lyrname == element.get('title')) {
-            element.setVisible(checkedStatus);
-        }
+var BlackSeoul = new ol.layer.Tile({
+    title: "black-seoul",
+    source: new ol.source.TileWMS({
+        url: "http://localhost:8081/geoserver/seoul/wms",
+        params: {'LAYERS': 'seoul:tl_sprd_rw', 'TILED': true},
+        serverType: 'geoserver',
+        visible: true
+    })
+})
+
+map.addLayer(BlackSeoul)
+
+var layerSwitcher = new ol.control.LayerSwitcher({
+    activationMode: 'click',
+    startActive: false,
+    groupSelectStyle: 'children',
+});
+
+map.addControl(layerSwitcher);
+
+// function toggleLayer(event) {
+//     var lyrname = event.target.value;
+//     var checkedStatus = event.target.checked;
+//     var lyrList = map.getLayers();
+
+//     lyrList.forEach(function (element) {
+//         if (lyrname == element.get('title')) {
+//             element.setVisible(checkedStatus);
+//         }
         
-    });
-}
+//     });
+// }
