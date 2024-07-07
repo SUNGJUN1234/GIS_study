@@ -8,13 +8,6 @@ var map = new ol.Map ({
     view: mapView,
 })
 
-var osmTile = new ol.layer.Tile ({
-    title: 'Open Street Map',
-    visible: true,
-    source: new ol.source.OSM()
-})
-map.addLayer(osmTile);
-
 var WorldTiles = new ol.layer.Tile({
     title: "Open World Map",
     source: new ol.source.TileWMS({
@@ -25,7 +18,27 @@ var WorldTiles = new ol.layer.Tile({
     })
 })
 
-map.addLayer(WorldTiles)
+// map.addLayer(WorldTiles)
+
+const key = 'Vworld-Key';
+
+var VworldTile = new ol.layer.Tile({
+    title: "Vworld Tiles",
+    source: new ol.source.XYZ({
+        url : `https://api.vworld.kr/req/wmts/1.0.0/${key}/Satellite/{z}/{y}/{x}.jpeg`,
+    }),
+})
+
+map.addLayer(VworldTile)
+
+var VworldTile2 = new ol.layer.Tile({
+    title: "Vworld Tiles2",
+    source: new ol.source.XYZ({
+        url : `https://api.vworld.kr/req/wmts/1.0.0/${key}/Base/{z}/{y}/{x}.png`,
+    }),
+})
+
+map.addLayer(VworldTile2)
 
 var BlueSeoul = new ol.layer.Tile({
     title: "blue-seoul",
